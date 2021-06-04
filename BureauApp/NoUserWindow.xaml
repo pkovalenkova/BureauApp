@@ -1,0 +1,25 @@
+﻿<Window x:Class="BureauApp.NoUserWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BureauApp"
+        mc:Ignorable="d"
+        Title="Неверные данные" Height="200" Width="300" WindowStartupLocation="CenterScreen" Icon="./Resources/icon2.png"  ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions >
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="1" x:Name="Create_Btn" HorizontalAlignment="Left" Margin="20,5" Width="90" Height="30" Content="Создать" Background="#35AB68" Foreground="AliceBlue" FontWeight="Bold" Click="Create_Btn_Click"/>
+        <Button Grid.Row="1" x:Name="Repeat_Btn" HorizontalAlignment="Right" Margin="20,5" Width="90" Height="30" Content="Отмена" Background="#AB3537" Foreground="AliceBlue" FontWeight="Bold" Click="Repeat_Btn_Click"/>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="5,5">
+            <TextBlock x:Name="HeaderWindow" Text="Неверный логин или пароль."  
+                   HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="14" TextAlignment="Center" FontFamily="Malgun Gothic" FontWeight="Bold" Margin="5,5,5,10"/>
+            <TextBlock HorizontalAlignment="Center"  TextWrapping="Wrap" 
+                   Text="Нажмите &quot;СОЗДАТЬ&quot;, чтобы создать новую учетную запись, или &quot;ОТМЕНА&quot;, чтобы ввести данные ещё раз. " 
+                   VerticalAlignment="Top" FontSize="12" TextAlignment="Justify" FontFamily="Malgun Gothic"/>
+        </StackPanel>
+
+    </Grid>
+</Window>

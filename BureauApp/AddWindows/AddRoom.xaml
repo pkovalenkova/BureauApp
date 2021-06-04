@@ -1,0 +1,243 @@
+﻿<Window x:Class="BureauApp.AddWindows.AddRoom"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BureauApp.AddWindows"
+        mc:Ignorable="d"
+        Title="Добавление строки в таблицу &quot;Помещение&quot;" Height="540" Width="650" Icon="../Resources/icon2.png" WindowStartupLocation="CenterScreen" Background="#EDEEF2" ResizeMode="NoResize">
+    <Grid>
+        <Grid x:Name="GridAll">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="80"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="40"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Расположение" Margin="20,10,20,5" FontSize="26" FontWeight="Bold" Foreground="#05205E"/>
+            <Grid Grid.Row="1" x:Name="Grid_Place">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="Kadastr" Grid.Column="0" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Кадастр здания" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+
+                        <TextBox Grid.Column="0" x:Name="kadastr" Margin="20,0"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid x:Name="Flat_number" Grid.Column="1" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Номер квартиры" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="flat_number" Margin="20,0" />
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <TextBlock Grid.Row="2" Text="Общие характеристики" Margin="20,10,20,5" FontSize="26" FontWeight="Bold" Foreground="#05205E"/>
+
+            <Grid Grid.Row="3" x:Name="Characteristics">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="Rooms" Grid.Column="0" Grid.Row="0"  Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Номер помещения на плане" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="record" Margin="20,0" />
+                    </Grid>
+                </Grid>
+                <Grid x:Name="NamePartName" Grid.Column="1" Grid.Row="0" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Назначение" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+
+                        <TextBox Grid.Column="0" x:Name="name_part_name" Margin="20,0"/>
+
+                    </Grid>
+
+                </Grid>
+
+                <Grid x:Name="Socket" Grid.Column="0" Grid.Row="1" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Число розеток" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="socket" Margin="20,0" />
+                    </Grid>
+                </Grid>
+                <Grid x:Name="Sections" Grid.Column="1" Grid.Row="1" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Число элементов в радиаторе" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="section" Margin="20,0" />
+                    </Grid>
+                </Grid>
+            </Grid>
+
+            <TextBlock Grid.Row="4" Text="Площадь и измерения" Margin="20,10,20,5" FontSize="26" FontWeight="Bold" Foreground="#05205E"/>
+
+            <Grid Grid.Row="5" x:Name="Grid_Space">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid x:Name="SquarePart" Grid.Column="0" Grid.Row="0" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Площадь помещения" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="square" Margin="20,0" />
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="Lenght" Grid.Column="1" Grid.Row="0" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Длина" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="lenght" Margin="20,0" />
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="RoomWidth" Grid.Column="2" Grid.Row="0" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Ширина" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="width" Margin="20,0" />
+                    </Grid>
+                </Grid>
+
+                <Grid x:Name="FlatHeight" Grid.Column="0" Grid.Row="1" Margin="0,5,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Высота помещения" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="20"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="height" Margin="20,0" />
+                    </Grid>
+                </Grid>
+            </Grid>
+            <TextBlock Grid.Row="6" Text="Отделка квартиры" Margin="20,10,20,5" FontSize="26" FontWeight="Bold" Foreground="#05205E"/>
+
+            <Grid Grid.Row="7" x:Name="Grid_Materials">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid x:Name="WallMaterial" Grid.Column="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Отделка стен" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="1" x:Name="wall" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                </Grid>
+
+                <Grid x:Name="FloorMaterial" Grid.Column="1" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Отделка пола" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="1" x:Name="floor" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                </Grid>
+                <Grid x:Name="CeilingMaterial" Grid.Column="2" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="Отделка потолков" HorizontalAlignment="Left" Margin="20,0" VerticalAlignment="Top"/>
+                    <TextBox Grid.Row="1" x:Name="ceiling" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="150"/>
+                </Grid>
+            </Grid>
+
+            <Button Grid.Row="8" x:Name="Add_btn" Content="Добавить" Margin="200,5" Foreground="White" Background="#04366E" FontSize="20" FontFamily="Malgun Gothic" FontWeight="Bold" Click="Add_btn_Click"/>
+        </Grid>
+
+    </Grid>
+</Window>

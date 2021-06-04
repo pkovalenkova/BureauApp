@@ -1,0 +1,44 @@
+﻿<Window x:Class="BureauApp.Windows.Profile"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BureauApp.Windows"
+        mc:Ignorable="d"
+        Title="Ваша учетная запись" Height="250" Width="450" Icon="../Resources/icon2.png" WindowStartupLocation="CenterScreen" Background="#EDEEF2" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="130"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
+            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" >
+                <Ellipse Fill="#04366E"  Height="130"  Stroke="Black"  Width="130"/>
+
+                <TextBlock Text="" FontFamily="Segoe MDL2 Assets" FontSize="100" Foreground="AliceBlue" HorizontalAlignment="Center" VerticalAlignment="Center" ></TextBlock>
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="10"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="Логин"  FontSize="18" Margin="10,0" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Grid.Row="1" x:Name="login" Text=""  FontSize="18"  Margin="10,0" VerticalAlignment="Top"></TextBlock>
+                <TextBlock Grid.Row="3" Text="Уровень учетной записи"  FontSize="18"  Margin="10,0" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Grid.Row="4" x:Name="role" Text=""  FontSize="16"  Margin="10,0" VerticalAlignment="Top"></TextBlock>
+            </Grid>
+        </Grid>
+        <Button x:Name="Exit_btn" Grid.Row="3" Content="Выйти из учетной записи" Background="Transparent" Height="30" Margin="140,0" Click="Exit_btn_Click"/>
+    </Grid>
+</Window>

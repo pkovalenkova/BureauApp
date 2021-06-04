@@ -1,0 +1,57 @@
+﻿<Window x:Class="BureauApp.Windows.WorkerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BureauApp.Windows"
+        mc:Ignorable="d"
+        Title="Отдел учета квартир БТИ" Height="520" Width="1000" WindowStartupLocation="CenterScreen" Icon="../Resources/icon2.png" ResizeMode="NoResize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="70"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="Grid0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="35"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid x:Name="Grid0_1" Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="House_btn" Grid.Column="0" Content="Здания" Background="#04366E" Foreground="AliceBlue" FontSize="18" FontFamily="Malgun Gothic" FontWeight="Bold" Click="House_btn_Click" />
+                <Button x:Name="Flat_btn" Grid.Column="1" Content="Квартиры" Background="#04366E" Foreground="AliceBlue" FontSize="18" FontFamily="Malgun Gothic" FontWeight="Bold" Click="Flat_btn_Click"/>
+                <Button x:Name="Room_btn" Grid.Column="2" Content="Комнаты" Background="#04366E" Foreground="AliceBlue" FontSize="18" FontFamily="Malgun Gothic" FontWeight="Bold" Click="Room_btn_Click"/>
+            </Grid>
+            <DataGrid Name="DG1" Grid.Row="1" ItemsSource="{Binding}" IsReadOnly="True"  Margin="0,0" FontSize="12" Background="#C2CFED"/>
+        </Grid>
+
+
+        <Grid x:Name="Grid1" Grid.Column="1" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button x:Name="Profile_Btn" Grid.Row="0" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="40" Click="Profile_Btn_Click" />
+            <Button x:Name="Search_Btn" Grid.Row="1" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="36" Click="Search_Btn_Click" />
+            <Button x:Name="Add_Btn" Grid.Row="2" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="36" FontWeight="Bold" Click="Add_Btn_Click" />
+            <Button x:Name="Update_Btn" Grid.Row="3" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="40" Click="Update_Btn_Click" />
+            <Button x:Name="Del_Btn" Grid.Row="4" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="40" Click="Del_Btn_Click"/>
+            <Button x:Name="Save_Btn" Grid.Row="5" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="44" Click="Save_Btn_Click" />
+            <Button x:Name="Report_Btn" Grid.Row="6" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="44" Click="Report_Btn_Click" />
+            <Button x:Name="Ref_Btn" Grid.Row="7" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="44" Click="Ref_Btn_Click" />
+            <Button x:Name="Exit_Btn" Grid.Row="8" Background="#04366E" Content="" FontFamily="Segoe MDL2 Assets" Foreground="AliceBlue" FontSize="36" FontWeight="Bold" Click="Exit_Btn_Click"/>
+        </Grid>
+    </Grid>
+</Window>
