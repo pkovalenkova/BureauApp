@@ -39,7 +39,7 @@ namespace BureauApp.ReportWindows
 
         private void Exp_btn_Click(object sender, RoutedEventArgs e)
         {
-            ExportToXls.Export(this);
+            Menu.Export(this);
         }
 
         private void Flat_btn_Click(object sender, RoutedEventArgs e)

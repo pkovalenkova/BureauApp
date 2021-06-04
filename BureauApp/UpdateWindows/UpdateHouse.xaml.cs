@@ -13,69 +13,13 @@ namespace BureauApp.UpdateWindows
         public UpdateHouse(DataRowView row)
         {
             InitializeComponent();
-            kadastr.Text=row.Row.ItemArray[0].ToString();
-            city.Text = row.Row.ItemArray[1].ToString();
-            district.Text = row.Row.ItemArray[4].ToString();
-            street.Text = row.Row.ItemArray[2].ToString();
-            house_number.Text = row.Row.ItemArray[3].ToString();
-            land.Text = row.Row.ItemArray[5].ToString();
-            year.Text = row.Row.ItemArray[6].ToString();
-            material.Text = row.Row.ItemArray[7].ToString();
-            @base.Text = row.Row.ItemArray[8].ToString();
-            comment.Text= row.Row.ItemArray[9].ToString();
-            wear.Text = row.Row.ItemArray[10].ToString();
-            flow.Text = row.Row.ItemArray[11].ToString();
-            line.Text = row.Row.ItemArray[12].ToString();
-            square.Text = row.Row.ItemArray[13].ToString();
-            hall.Text = row.Row.ItemArray[14].ToString();
-            elevator.IsChecked = Convert.ToBoolean(row.Row.ItemArray[15].ToString());
+            Initialize.InitializeHouseFields(this, row);
 
         }
 
         private void Upd_btn_Click(object sender, RoutedEventArgs e)
         {
-            Query query = new Query();
-            Query help_query = new Query();
-            try
-            {
-                if (query.Conn.State == ConnectionState.Closed)
-                    query.Conn.Open();
-                if (help_query.Conn.State == ConnectionState.Closed)
-                    help_query.Conn.Open();
-                CheckEmptyField();
-                CheckWrongField();
-
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-
-                switch (MessageBox.Show("Вы точно хотите изменить выбранную строку?", "Подтвердите действие", btnMessageBox))
-                {
-                    case MessageBoxResult.Yes:
-                        query.Sql = $"UPDATE house SET id_City=@id_City, Street=@Street, House_number=@House_number, id_District=@id_District, " +
-                                    $"Land=@Land, Year=@Year, id_Material=@id_Material, id_Base=@id_Base, Comment=@Comment, Wear=@Wear, Flow=@Flow, Line='{line.Text.Replace(',', '.')}', Square=@Square, Hall=@Hall, Elevator=@Elevator " +
-                                    $"WHERE Kadastr=@Kadastr";
-
-                        MySqlCommand cmd_UpdHouseRow = new MySqlCommand(query.Sql, query.Conn);
-
-                        FillUpdSqlQuery(cmd_UpdHouseRow, help_query);
-                        cmd_UpdHouseRow.ExecuteNonQuery();
-                        MessageBox.Show("Выбранная строка успешно обновлена", "Успех");
-                        this.Close();
-                        break;
-
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка");
-            }
-            finally
-            {
-                query.Conn.Close();
-                help_query.Conn.Close();
-            }
-
+            UpdHouse();
         }
        
         private void CheckEmptyField()
@@ -244,6 +188,50 @@ namespace BureauApp.UpdateWindows
             cmd.Parameters.AddWithValue("Hall", hall.Text);
             if (elevator.IsChecked == true) cmd.Parameters.AddWithValue("Elevator", 1);
             else cmd.Parameters.AddWithValue("Elevator", 0);
+        }
+        private void UpdHouse()
+        {
+            Query query = new Query();
+            Query help_query = new Query();
+            try
+            {
+                if (query.Conn.State == ConnectionState.Closed)
+                    query.Conn.Open();
+                if (help_query.Conn.State == ConnectionState.Closed)
+                    help_query.Conn.Open();
+                CheckEmptyField();
+                CheckWrongField();
+
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+
+                switch (MessageBox.Show("Вы точно хотите изменить выбранную строку?", "Подтвердите действие", btnMessageBox))
+                {
+                    case MessageBoxResult.Yes:
+                        query.Sql = $"UPDATE house SET id_City=@id_City, Street=@Street, House_number=@House_number, id_District=@id_District, " +
+                                    $"Land=@Land, Year=@Year, id_Material=@id_Material, id_Base=@id_Base, Comment=@Comment, Wear=@Wear, Flow=@Flow, Line='{line.Text.Replace(',', '.')}', Square=@Square, Hall=@Hall, Elevator=@Elevator " +
+                                    $"WHERE Kadastr=@Kadastr";
+
+                        MySqlCommand cmd_UpdHouseRow = new MySqlCommand(query.Sql, query.Conn);
+
+                        FillUpdSqlQuery(cmd_UpdHouseRow, help_query);
+                        cmd_UpdHouseRow.ExecuteNonQuery();
+                        MessageBox.Show("Выбранная строка успешно обновлена", "Успех");
+                        this.Close();
+                        break;
+
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+            finally
+            {
+                query.Conn.Close();
+                help_query.Conn.Close();
+            }
         }
     }
 }

@@ -11,19 +11,19 @@ namespace BureauApp.UpdateWindows
     public partial class UpdateUser : Window
     {
         DataRowView row;
-        string[] roles = { "user", "worker", "admin" };
         public UpdateUser(DataRowView rw )
         {
             InitializeComponent();
             row = rw;
-            login.Text = row.Row.ItemArray[1].ToString();
-            pass.Text = row.Row.ItemArray[2].ToString();
-
-            role.ItemsSource = roles;
-            role.SelectedItem = row.Row.ItemArray[3].ToString();
+            Initialize.InitializeUserFields(this, row);
         }
 
         private void Upd_btn_Click(object sender, RoutedEventArgs e)
+        {
+            UpdUser();
+        }
+
+        private void UpdUser()
         {
             Query query = new Query();
 
@@ -60,7 +60,6 @@ namespace BureauApp.UpdateWindows
             finally
             {
                 query.Conn.Close();
-
             }
         }
     }

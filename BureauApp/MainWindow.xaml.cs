@@ -59,8 +59,7 @@ namespace BureauApp
 
                 if (CheckUser(query) == 0)
                 {
-                    NoUserWindow noUserWindow = new NoUserWindow(login.Text, password.Password.ToString());
-                    noUserWindow.ShowDialog();
+                    MessageBox.Show("Неверный логин или пароль. ", "Учетная запись не найдена");
                 }
                 else
                 {
@@ -117,10 +116,8 @@ namespace BureauApp
                 {
                     CheckLogin(query);
                     query.Sql = $"INSERT INTO users (Login, Password, Role) VALUES ('{login.Text}', '{Hash.GetHash(password.Password)}', 'user')";
-
                     MySqlCommand cmd_AddUserRow = new MySqlCommand(query.Sql, query.Conn);
                     cmd_AddUserRow.ExecuteNonQuery();
-
                     MessageBox.Show("Новый пользователь был зарегестрирован", "Успех");
 
                 }

@@ -110,13 +110,13 @@
       <DependentUpon>AddUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangeColumnNameOnFriend.cs" />
-    <Compile Include="Checking.cs" />
-    <Compile Include="DelRows.cs" />
     <Compile Include="ExportToXls.cs" />
     <Compile Include="FieldAndValue.cs" />
     <Compile Include="Filling\FillSearchSqlQuery.cs" />
     <Compile Include="Filling\FillTables.cs" />
     <Compile Include="Hash.cs" />
+    <Compile Include="Initialize.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="NumFieldAndValue.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="ReportWindows\Report.xaml.cs">
@@ -146,7 +146,6 @@
     <Compile Include="UpdateWindows\UpdateUser.xaml.cs">
       <DependentUpon>UpdateUser.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdRows.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Windows\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>

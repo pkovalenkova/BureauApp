@@ -29,9 +29,7 @@ namespace BureauApp.AddWindows
                 CheckLogin(query);
 
                 query.Sql = $"INSERT INTO users (Login, Password, Role) VALUES ('{login.Text}', '{Hash.GetHash(pass.Text)}', '{role.SelectionBoxItem}')";
-
                 MySqlCommand cmd_AddUserRow = new MySqlCommand(query.Sql, query.Conn);
-
                 MessageBox.Show("Было добавлено строк " + cmd_AddUserRow.ExecuteNonQuery().ToString(), "Успех");
                 this.Close();
             }

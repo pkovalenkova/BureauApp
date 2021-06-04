@@ -28,7 +28,7 @@ namespace BureauApp.SearchWindows
 
         private void Exp_btn_Click(object sender, RoutedEventArgs e)
         {
-            ExportToXls.Export(SearchResult);
+            Menu.Export(SearchResult);
         }
         private void house_number_low_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -13,24 +13,12 @@ namespace BureauApp.SearchWindows
         public UserSearch()
         {
             InitializeComponent();
-
-            try
-            {
-                query.Sql = "Select * from users";
-                FillTables.FillTableUsers(query, SearchResult);
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show("Ошибка при работе с базой данных:" + ex.Message);
-            }
+            Initialize.IniInitializeTable(SearchResult);
         }
 
         private void Reset_btn_Click(object sender, RoutedEventArgs e)
         {
-            login.Clear();
-            role.Clear();
-            query.Sql = "Select * from users";
-            FillTables.FillTableUsers(query, SearchResult);
+            Reset();
         }
 
        
@@ -46,12 +34,19 @@ namespace BureauApp.SearchWindows
 
         private void Exp_btn_Click(object sender, RoutedEventArgs e)
         {
-            ExportToXls.Export(SearchResult);
+            Menu.Export(SearchResult);
         }
 
         private void SearchSqlQuery()
         {
             query.Sql = $"SELECT * FROM users WHERE Login LIKE '{login.Text}%' AND Role LIKE '{role.Text}%'";
+            FillTables.FillTableUsers(query, SearchResult);
+        }
+        private void Reset()
+        {
+            login.Clear();
+            role.Clear();
+            query.Sql = "Select * from users";
             FillTables.FillTableUsers(query, SearchResult);
         }
     }

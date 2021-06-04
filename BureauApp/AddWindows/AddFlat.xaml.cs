@@ -22,9 +22,11 @@ namespace BureauApp.AddWindows
                 if (query.Conn.State == System.Data.ConnectionState.Closed)
                     query.Conn.Open();
 
-                CheckKadastr(query);
+                
                 CheckEmptyField();
                 CheckWrongField();
+                CheckKadastr(query);
+                CheckFlat(query);
 
 
                 query.Sql = $"INSERT INTO flat (FK_Kadastr, Flat_number, Storey, Rooms, Level, SquareHall, LivingSquare, Branch, Balcony, Height) VALUES (@FK_Kadastr, @Flat_number, @Storey, @Rooms, @Level, '{square_hall.Text.Replace(',', '.')}', '{living_square.Text.Replace(',', '.')}', '{branch.Text.Replace(',', '.')}', '{balcony.Text.Replace(',', '.')}', '{height.Text.Replace(',', '.')}')";
@@ -122,6 +124,14 @@ namespace BureauApp.AddWindows
             int countCity = Convert.ToInt32(cmd_CheckKadastr.ExecuteScalar());
 
             if (countCity == 0) { throw new Exception("Здание с таким кадастром не существует в таблице \"Здания\", нельзя добавить квартиру несуществуещего здания"); }
+        }
+        private void CheckFlat(Query query)
+        {
+            query.Sql = $"SELECT COUNT(1) FROM flat WHERE FK_Kadastr='{kadastr.Text}' AND Flat_number='{flat_number.Text}'";
+            MySqlCommand cmd_CheckFlat = new MySqlCommand(query.Sql, query.Conn);
+            int countFlat = Convert.ToInt32(cmd_CheckFlat.ExecuteScalar());
+
+            if (countFlat != 0) { throw new Exception("Уже существует квартира с таким номером в данном здании."); }
         }
 
         private void FillAddSqlQuery(MySqlCommand cmd)

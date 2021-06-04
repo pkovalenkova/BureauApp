@@ -15,67 +15,12 @@ namespace BureauApp.UpdateWindows
         {
             InitializeComponent();
             row = rw;
-            kadastr.Text = row.Row.ItemArray[0].ToString();
-            flat_number.Text = row.Row.ItemArray[1].ToString();
-            record.Text = row.Row.ItemArray[3].ToString();
-            name_part_name.Text = row.Row.ItemArray[4].ToString();
-            square.Text = row.Row.ItemArray[5].ToString();
-            lenght.Text = row.Row.ItemArray[6].ToString();
-            width.Text = row.Row.ItemArray[7].ToString();
-            wall.Text = row.Row.ItemArray[8].ToString();
-            floor.Text = row.Row.ItemArray[9].ToString();
-            ceiling.Text = row.Row.ItemArray[10].ToString();
-            height.Text = row.Row.ItemArray[11].ToString();
-            socket.Text = row.Row.ItemArray[12].ToString();
-            section.Text = row.Row.ItemArray[13].ToString();
+            Initialize.InitializeRoomFields(this, row);
         }
 
         private void Upd_btn_Click(object sender, RoutedEventArgs e)
         {
-            Query query = new Query();
-            Query help_query = new Query();
-            try
-            {
-                if (query.Conn.State == ConnectionState.Closed)
-                    query.Conn.Open();
-                if (help_query.Conn.State == ConnectionState.Closed)
-                    help_query.Conn.Open();
-
-                CheckEmptyField();
-                CheckWrongField();
-                CheckFlat(query);
-
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-
-                switch (MessageBox.Show("Вы точно хотите изменить выбранную строку?", "Подтвердите действие", btnMessageBox))
-                {
-                    case MessageBoxResult.Yes:
-                        query.Sql = $"UPDATE room SET FK_FLAT_ID=@FK_FLAT_ID, id_NamePart=@id_NamePart, Record=@Record, SquarePart='{square.Text.Replace(',', '.')}', " +
-                                    $"id_WallDecoration=@id_WallDecoration, Length='{lenght.Text.Replace(',', '.')}', Width='{width.Text.Replace(',', '.')}', id_FloorDecoration=@id_FloorDecoration, id_CeilingDecoration=@id_CeilingDecoration, " +
-                                    $"HeightPart='{height.Text.Replace(',', '.')}', Socket=@Socket, Sections=@Sections " +
-                                    $"WHERE Room_ID='{row.Row.ItemArray[2].ToString()}'";
-
-                        MySqlCommand cmd_UpdRoomRow = new MySqlCommand(query.Sql, query.Conn);
-
-                        FillUpdSqlQuery(cmd_UpdRoomRow, help_query);
-                        cmd_UpdRoomRow.ExecuteNonQuery();
-                        MessageBox.Show("Выбранная строка успешно обновлена", "Успех");
-                        this.Close();
-                        break;
-
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка");
-            }
-            finally
-            {
-                query.Conn.Close();
-                help_query.Conn.Close();
-            }
+            UpdRoom();
         }
         private void CheckEmptyField()
         {
@@ -154,7 +99,6 @@ namespace BureauApp.UpdateWindows
 
             if (countFlat == 0) { throw new Exception("Квартиры, для которой добавляется помещение, не существует в таблице \"Квартира\", невозможно добавить новое помещение"); }
         }
-
         private int GetFlatID(Query query)
         {
             query.Sql = $"SELECT Flat_ID FROM flat WHERE FK_Kadastr='{kadastr.Text}' AND Flat_number='{flat_number.Text}'";
@@ -162,8 +106,6 @@ namespace BureauApp.UpdateWindows
             int Flat_ID = Convert.ToInt32(cmd_CheckFlat.ExecuteScalar());
             return Flat_ID;
         }
-
-
         private int GetNamePartID(Query query)
         {
             int name_part_ID;
@@ -184,7 +126,6 @@ namespace BureauApp.UpdateWindows
 
             return name_part_ID;
         }
-
         private int GetWallDecorationID(Query query)
         {
             int walldecoration_ID;
@@ -245,7 +186,6 @@ namespace BureauApp.UpdateWindows
 
             return ceilingdecoration_ID;
         }
-
         private void FillUpdSqlQuery(MySqlCommand cmd, Query help_query)
         {
             cmd.Parameters.AddWithValue("FK_FLAT_ID", GetFlatID(help_query));
@@ -259,6 +199,53 @@ namespace BureauApp.UpdateWindows
 
             cmd.Parameters.AddWithValue("Socket", socket.Text);
             cmd.Parameters.AddWithValue("Sections", section.Text);
+        }
+        private void UpdRoom()
+        {
+            Query query = new Query();
+            Query help_query = new Query();
+            try
+            {
+                if (query.Conn.State == ConnectionState.Closed)
+                    query.Conn.Open();
+                if (help_query.Conn.State == ConnectionState.Closed)
+                    help_query.Conn.Open();
+
+                CheckEmptyField();
+                CheckWrongField();
+                CheckFlat(query);
+
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+
+                switch (MessageBox.Show("Вы точно хотите изменить выбранную строку?", "Подтвердите действие", btnMessageBox))
+                {
+                    case MessageBoxResult.Yes:
+                        query.Sql = $"UPDATE room SET FK_FLAT_ID=@FK_FLAT_ID, id_NamePart=@id_NamePart, Record=@Record, SquarePart='{square.Text.Replace(',', '.')}', " +
+                                    $"id_WallDecoration=@id_WallDecoration, Length='{lenght.Text.Replace(',', '.')}', Width='{width.Text.Replace(',', '.')}', id_FloorDecoration=@id_FloorDecoration, id_CeilingDecoration=@id_CeilingDecoration, " +
+                                    $"HeightPart='{height.Text.Replace(',', '.')}', Socket=@Socket, Sections=@Sections " +
+                                    $"WHERE Room_ID='{row.Row.ItemArray[2]}'";
+
+                        MySqlCommand cmd_UpdRoomRow = new MySqlCommand(query.Sql, query.Conn);
+
+                        FillUpdSqlQuery(cmd_UpdRoomRow, help_query);
+                        cmd_UpdRoomRow.ExecuteNonQuery();
+                        MessageBox.Show("Выбранная строка успешно обновлена", "Успех");
+                        this.Close();
+                        break;
+
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+            finally
+            {
+                query.Conn.Close();
+                help_query.Conn.Close();
+            }
         }
     }
 }

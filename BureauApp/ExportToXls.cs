@@ -7,7 +7,7 @@ namespace BureauApp
 {
     class ExportToXls
     {
-        public static void Export(DataGrid DG)
+        public static void ExportTable(DataGrid DG)
         {
             MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
             switch (MessageBox.Show("Экспортировать данную таблицу в MicrosoftExcel?", "Подтвердите действие", btnMessageBox))
@@ -49,7 +49,7 @@ namespace BureauApp
                     break;
             } 
         }
-        public static void Export(ReportWindows.Report window)
+        public static void ExportTable(ReportWindows.Report window)
         {
             MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
             switch (MessageBox.Show("Экспортировать данную таблицу в MicrosoftExcel?", "Подтвердите действие", btnMessageBox))

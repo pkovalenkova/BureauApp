@@ -1,6 +1,0 @@
-﻿namespace BureauApp
-{
-    class Cheking
-    {
-    }
-}

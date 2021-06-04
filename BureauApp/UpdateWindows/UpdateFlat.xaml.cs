@@ -15,16 +15,7 @@ namespace BureauApp.UpdateWindows
         {
             InitializeComponent();
             row = rw;
-            kadastr.Text = row.Row.ItemArray[0].ToString();
-            flat_number.Text= row.Row.ItemArray[2].ToString();
-            storey.Text = row.Row.ItemArray[3].ToString();
-            rooms.Text = row.Row.ItemArray[4].ToString();
-            height.Text = row.Row.ItemArray[10].ToString();
-            square_hall.Text = row.Row.ItemArray[6].ToString();
-            living_square.Text = row.Row.ItemArray[7].ToString();
-            branch.Text = row.Row.ItemArray[8].ToString();
-            balcony.Text = row.Row.ItemArray[9].ToString();
-            level.IsChecked = Convert.ToBoolean(row.Row.ItemArray[5].ToString());
+            Initialize.InitializeFlatFields(this, row);
 
         }
 
@@ -36,7 +27,6 @@ namespace BureauApp.UpdateWindows
             {
                 if (query.Conn.State == System.Data.ConnectionState.Closed)
                     query.Conn.Open();
-                //CheckKadastr(query);
                 CheckEmptyField();
                 CheckWrongField();
 
