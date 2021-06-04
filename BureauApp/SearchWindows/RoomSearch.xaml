@@ -130,7 +130,7 @@
                             <TextBox Grid.Column="0" x:Name="socket_low" Margin="20,0" TextChanged="socket_low_TextChanged"/>
                             <TextBox Grid.Column="1" x:Name="socket_high" Margin="20,0" TextChanged="socket_high_TextChanged"/>
                         </Grid>
-                        <toolkit:RangeSlider Grid.Row="2" x:Name="socket_sldr" Margin="20,5,40,0" Minimum="1" Maximum="20" LowerValue="1" HigherValue="20" LowerValueChanged="socket_sldr_LowerValueChanged" HigherValueChanged="socket_sldr_HigherValueChanged"/>
+                        <toolkit:RangeSlider Grid.Row="2" x:Name="socket_sldr" Margin="20,5,40,0" Minimum="0" Maximum="20" LowerValue="0" HigherValue="20" LowerValueChanged="socket_sldr_LowerValueChanged" HigherValueChanged="socket_sldr_HigherValueChanged"/>
                     </Grid>
                     <Grid x:Name="Sections" Grid.Column="1" Grid.Row="1" Margin="0,5,0,0">
                         <Grid.RowDefinitions>
@@ -148,7 +148,7 @@
                             <TextBox Grid.Column="0" x:Name="section_low" Margin="20,0" TextChanged="section_low_TextChanged"/>
                             <TextBox Grid.Column="1" x:Name="section_high" Margin="20,0" TextChanged="section_high_TextChanged"/>
                         </Grid>
-                        <toolkit:RangeSlider Grid.Row="2" x:Name="section_sldr" Margin="20,5,40,0" Minimum="1" Maximum="20" LowerValue="1" HigherValue="20" LowerValueChanged="section_sldr_LowerValueChanged" HigherValueChanged="section_sldr_HigherValueChanged"/>
+                        <toolkit:RangeSlider Grid.Row="2" x:Name="section_sldr" Margin="20,5,40,0" Minimum="0" Maximum="20" LowerValue="0" HigherValue="20" LowerValueChanged="section_sldr_LowerValueChanged" HigherValueChanged="section_sldr_HigherValueChanged"/>
                     </Grid>
                 </Grid>
 

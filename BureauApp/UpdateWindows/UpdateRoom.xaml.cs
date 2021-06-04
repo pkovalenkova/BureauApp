@@ -57,13 +57,13 @@ namespace BureauApp.UpdateWindows
             if (!Int32.TryParse(socket.Text, out res)) { throw new Exception("Неправильный формат данных поля \"Число розеток\""); }
             else
             {
-                if ((res < 1) || (res > 20)) { throw new Exception("Неправильный формат данных поля \"Число розеток\""); }
+                if ((res < 0) || (res > 20)) { throw new Exception("Неправильный формат данных поля \"Число розеток\""); }
             }
 
             if (!Int32.TryParse(section.Text, out res)) { throw new Exception("Неправильный формат данных поля \"Число радиаторов отопления\""); }
             else
             {
-                if ((res < 1) || (res > 20)) { throw new Exception("Неправильный формат данных поля \"Число радиаторов отопления\""); }
+                if ((res < 0) || (res > 20)) { throw new Exception("Неправильный формат данных поля \"Число радиаторов отопления\""); }
             }
 
             if (!Double.TryParse(height.Text, out resD)) { throw new Exception("Неправильный формат данных поля \"Высота помещения\""); }
@@ -99,103 +99,24 @@ namespace BureauApp.UpdateWindows
 
             if (countFlat == 0) { throw new Exception("Квартиры, для которой добавляется помещение, не существует в таблице \"Квартира\", невозможно добавить новое помещение"); }
         }
-        private int GetFlatID(Query query)
+        private void CheckRoom(Query query)
         {
-            query.Sql = $"SELECT Flat_ID FROM flat WHERE FK_Kadastr='{kadastr.Text}' AND Flat_number='{flat_number.Text}'";
-            MySqlCommand cmd_CheckFlat = new MySqlCommand(query.Sql, query.Conn);
-            int Flat_ID = Convert.ToInt32(cmd_CheckFlat.ExecuteScalar());
-            return Flat_ID;
-        }
-        private int GetNamePartID(Query query)
-        {
-            int name_part_ID;
-            query.Sql = $"SELECT COUNT(1) FROM namepart_r WHERE NamePartName='{name_part_name.Text}'";
-            MySqlCommand cmd_NamePart = new MySqlCommand(query.Sql, query.Conn);
-            int countNamePart = Convert.ToInt32(cmd_NamePart.ExecuteScalar());
+            query.Sql = $"SELECT Room_ID FROM rooms WHERE FK_Kadastr='{kadastr.Text}' AND Flat_number='{flat_number.Text}' AND Record='{record.Text}'";
+            MySqlCommand cmd_CheckRoom = new MySqlCommand(query.Sql, query.Conn);
+            int RoomID = Convert.ToInt32(cmd_CheckRoom.ExecuteScalar());
 
-            if (countNamePart == 0)
-            {
-                query.Sql = $"INSERT INTO namepart_r (NamePartName) VALUES('{name_part_name.Text}')";
-                MySqlCommand cmd_AddNewNamePart = new MySqlCommand(query.Sql, query.Conn);
-                cmd_AddNewNamePart.ExecuteNonQuery();
-            }
-
-            query.Sql = $"SELECT NamePart_ID FROM namepart_r WHERE NamePartName='{name_part_name.Text}'";
-            MySqlCommand cmd_NamePartID = new MySqlCommand(query.Sql, query.Conn);
-            name_part_ID = Convert.ToInt32(cmd_NamePartID.ExecuteScalar());
-
-            return name_part_ID;
-        }
-        private int GetWallDecorationID(Query query)
-        {
-            int walldecoration_ID;
-            query.Sql = $"SELECT COUNT(1) FROM walldecoration_r WHERE WallDecorationType='{wall.Text}'";
-            MySqlCommand cmd_WallDecoration = new MySqlCommand(query.Sql, query.Conn);
-            int countWallDecoration = Convert.ToInt32(cmd_WallDecoration.ExecuteScalar());
-
-            if (countWallDecoration == 0)
-            {
-                query.Sql = $"INSERT INTO walldecoration_r (WallDecorationType) VALUES('{wall.Text}')";
-                MySqlCommand cmd_AddNewWallDecoration = new MySqlCommand(query.Sql, query.Conn);
-                cmd_AddNewWallDecoration.ExecuteNonQuery();
-            }
-
-            query.Sql = $"SELECT WallDecoration_ID FROM walldecoration_r WHERE WallDecorationType='{wall.Text}'";
-            MySqlCommand cmd_WallDecorationID = new MySqlCommand(query.Sql, query.Conn);
-            walldecoration_ID = Convert.ToInt32(cmd_WallDecorationID.ExecuteScalar());
-
-            return walldecoration_ID;
-        }
-        private int GetFloorDecorationID(Query query)
-        {
-            int floordecoration_ID;
-            query.Sql = $"SELECT COUNT(1) FROM floordecoration_r WHERE FloorDecorationType='{floor.Text}'";
-            MySqlCommand cmd_FloorDecoration = new MySqlCommand(query.Sql, query.Conn);
-            int countFloorDecoration = Convert.ToInt32(cmd_FloorDecoration.ExecuteScalar());
-
-            if (countFloorDecoration == 0)
-            {
-                query.Sql = $"INSERT INTO floordecoration_r (FloorDecorationType) VALUES('{floor.Text}')";
-                MySqlCommand cmd_AddNewFloorDecoration = new MySqlCommand(query.Sql, query.Conn);
-                cmd_AddNewFloorDecoration.ExecuteNonQuery();
-            }
-
-            query.Sql = $"SELECT FloorDecoration_ID FROM floordecoration_r WHERE FloorDecorationType='{floor.Text}'";
-            MySqlCommand cmd_FloorDecorationID = new MySqlCommand(query.Sql, query.Conn);
-            floordecoration_ID = Convert.ToInt32(cmd_FloorDecorationID.ExecuteScalar());
-
-            return floordecoration_ID;
-        }
-        private int GetCeilingDecorationID(Query query)
-        {
-            int ceilingdecoration_ID;
-            query.Sql = $"SELECT COUNT(1) FROM ceilingdecoration_r WHERE CeilingDecorationType='{ceiling.Text}'";
-            MySqlCommand cmd_CeilingDecoration = new MySqlCommand(query.Sql, query.Conn);
-            int countCeilingDecoration = Convert.ToInt32(cmd_CeilingDecoration.ExecuteScalar());
-
-            if (countCeilingDecoration == 0)
-            {
-                query.Sql = $"INSERT INTO ceilingdecoration_r (CeilingDecorationType) VALUES('{ceiling.Text}')";
-                MySqlCommand cmd_AddNewCeilingDecoration = new MySqlCommand(query.Sql, query.Conn);
-                cmd_AddNewCeilingDecoration.ExecuteNonQuery();
-            }
-
-            query.Sql = $"SELECT CeilingDecoration_ID FROM ceilingdecoration_r WHERE CeilingDecorationType='{ceiling.Text}'";
-            MySqlCommand cmd_CeilingDecorationID = new MySqlCommand(query.Sql, query.Conn);
-            ceilingdecoration_ID = Convert.ToInt32(cmd_CeilingDecorationID.ExecuteScalar());
-
-            return ceilingdecoration_ID;
+            if (RoomID != Convert.ToInt32(row.Row.ItemArray[2])) { throw new Exception("Такое помоещение уже существует в данной квартире"); }
         }
         private void FillUpdSqlQuery(MySqlCommand cmd, Query help_query)
         {
-            cmd.Parameters.AddWithValue("FK_FLAT_ID", GetFlatID(help_query));
-            cmd.Parameters.AddWithValue("id_NamePart", GetNamePartID(help_query));
+            cmd.Parameters.AddWithValue("FK_FLAT_ID", GetID.GetFlatID(help_query, kadastr.Text, flat_number.Text));
+            cmd.Parameters.AddWithValue("id_NamePart", GetID.GetNamePartID(help_query, name_part_name.Text));
             cmd.Parameters.AddWithValue("Record", record.Text);
 
-            cmd.Parameters.AddWithValue("id_WallDecoration", GetWallDecorationID(help_query));
+            cmd.Parameters.AddWithValue("id_WallDecoration", GetID.GetWallDecorationID(help_query, wall.Text));
 
-            cmd.Parameters.AddWithValue("id_FloorDecoration", GetFloorDecorationID(help_query));
-            cmd.Parameters.AddWithValue("id_CeilingDecoration", GetCeilingDecorationID(help_query));
+            cmd.Parameters.AddWithValue("id_FloorDecoration", GetID.GetFloorDecorationID(help_query, floor.Text));
+            cmd.Parameters.AddWithValue("id_CeilingDecoration", GetID.GetCeilingDecorationID(help_query, ceiling.Text));
 
             cmd.Parameters.AddWithValue("Socket", socket.Text);
             cmd.Parameters.AddWithValue("Sections", section.Text);
@@ -214,6 +135,7 @@ namespace BureauApp.UpdateWindows
                 CheckEmptyField();
                 CheckWrongField();
                 CheckFlat(query);
+                CheckRoom(query);
 
                 MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
 

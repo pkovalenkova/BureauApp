@@ -21,44 +21,7 @@ namespace BureauApp.UpdateWindows
 
         private void Upd_btn_Click(object sender, RoutedEventArgs e)
         {
-            Query query = new Query();
-
-            try
-            {
-                if (query.Conn.State == System.Data.ConnectionState.Closed)
-                    query.Conn.Open();
-                CheckEmptyField();
-                CheckWrongField();
-
-                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
-
-                switch (MessageBox.Show("Вы точно хотите изменить выбранную строку?", "Подтвердите действие", btnMessageBox))
-                {
-                    case MessageBoxResult.Yes:
-                        query.Sql = $"UPDATE flat SET FK_Kadastr=@FK_Kadastr, Flat_number=@Flat_number, Storey=@Storey, Rooms=@Rooms, SquareHall='{square_hall.Text.Replace(',', '.')}', " +
-                                    $"LivingSquare='{living_square.Text.Replace(',', '.')}', Branch='{branch.Text.Replace(',', '.')}', Balcony='{balcony.Text.Replace(',', '.')}', Height='{height.Text.Replace(',', '.')}', Level=@Level " +
-                                    $"WHERE Flat_ID='{row.Row.ItemArray[1]}'";
-
-                        MySqlCommand cmd_UpdHouseRow = new MySqlCommand(query.Sql, query.Conn);
-
-                        FillUpdSqlQuery(cmd_UpdHouseRow);
-                        cmd_UpdHouseRow.ExecuteNonQuery();
-                        MessageBox.Show("Выбранная строка успешно обновлена", "Успех");
-                        this.Close();
-                        break;
-
-                    case MessageBoxResult.No:
-                        break;
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка");
-            }
-            finally
-            {
-                query.Conn.Close();
-            }
+            UpdFlat();
         }
         private void CheckEmptyField()
         {
@@ -125,6 +88,14 @@ namespace BureauApp.UpdateWindows
                 if ((resD < 1) || (resD > 20)) { throw new Exception("Неправильный формат данных поля \"Площадь балкона\""); }
             }
         }
+        private void CheckFlat(Query query)
+        {
+            query.Sql = $"SELECT Flat_ID FROM flat WHERE FK_Kadastr='{kadastr.Text}' AND Flat_number='{flat_number.Text}'";
+            MySqlCommand cmd_CheckFlat = new MySqlCommand(query.Sql, query.Conn);
+            int Flat_ID = Convert.ToInt32(cmd_CheckFlat.ExecuteScalar());
+
+            if (Flat_ID!= Convert.ToInt32(row.Row.ItemArray[1])) { throw new Exception("Уже существует квартира с таким номером в данном здании."); }
+        }
         private void FillUpdSqlQuery(MySqlCommand cmd)
         {
             cmd.Parameters.AddWithValue("FK_Kadastr", kadastr.Text);
@@ -134,6 +105,48 @@ namespace BureauApp.UpdateWindows
 
             if (level.IsChecked == true) cmd.Parameters.AddWithValue("Level", 1);
             else cmd.Parameters.AddWithValue("Level", 0);
+        }
+        private void UpdFlat()
+        {
+            Query query = new Query();
+
+            try
+            {
+                if (query.Conn.State == System.Data.ConnectionState.Closed)
+                    query.Conn.Open();
+                CheckEmptyField();
+                CheckWrongField();
+                CheckFlat(query);
+
+                MessageBoxButton btnMessageBox = MessageBoxButton.YesNo;
+
+                switch (MessageBox.Show("Вы точно хотите изменить выбранную строку?", "Подтвердите действие", btnMessageBox))
+                {
+                    case MessageBoxResult.Yes:
+                        query.Sql = $"UPDATE flat SET FK_Kadastr=@FK_Kadastr, Flat_number=@Flat_number, Storey=@Storey, Rooms=@Rooms, SquareHall='{square_hall.Text.Replace(',', '.')}', " +
+                                    $"LivingSquare='{living_square.Text.Replace(',', '.')}', Branch='{branch.Text.Replace(',', '.')}', Balcony='{balcony.Text.Replace(',', '.')}', Height='{height.Text.Replace(',', '.')}', Level=@Level " +
+                                    $"WHERE Flat_ID='{row.Row.ItemArray[1]}'";
+
+                        MySqlCommand cmd_UpdHouseRow = new MySqlCommand(query.Sql, query.Conn);
+
+                        FillUpdSqlQuery(cmd_UpdHouseRow);
+                        cmd_UpdHouseRow.ExecuteNonQuery();
+                        MessageBox.Show("Выбранная строка успешно обновлена", "Успех");
+                        this.Close();
+                        break;
+
+                    case MessageBoxResult.No:
+                        break;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+            finally
+            {
+                query.Conn.Close();
+            }
         }
     }
 }

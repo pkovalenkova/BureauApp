@@ -37,7 +37,7 @@ namespace BureauApp.SearchWindows
                 if (house_number_low.Text != string.Empty)
                 house_number_sldr.LowerValue = Convert.ToDouble(house_number_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -51,7 +51,7 @@ namespace BureauApp.SearchWindows
                 if (house_number_high.Text != string.Empty)
                     house_number_sldr.HigherValue = Convert.ToDouble(house_number_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message+"Пример заполненного поля: 48,5.");
             }
@@ -74,7 +74,7 @@ namespace BureauApp.SearchWindows
                 if (line_low.Text != string.Empty)
                     line_sldr.LowerValue = Convert.ToDouble(line_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -87,7 +87,7 @@ namespace BureauApp.SearchWindows
                 if (line_high.Text != string.Empty)
                     line_sldr.HigherValue = Convert.ToDouble(line_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -110,7 +110,7 @@ namespace BureauApp.SearchWindows
                 if (year_low.Text != string.Empty)
                     year_sldr.LowerValue = Convert.ToDouble(year_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -123,7 +123,7 @@ namespace BureauApp.SearchWindows
                 if (year_high.Text != string.Empty)
                     year_sldr.HigherValue = Convert.ToDouble(year_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -146,7 +146,7 @@ namespace BureauApp.SearchWindows
                 if (wear_low.Text != string.Empty)
                 wear_sldr.LowerValue = Convert.ToDouble(wear_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -159,7 +159,7 @@ namespace BureauApp.SearchWindows
                     if (wear_high.Text != string.Empty)
                 wear_sldr.HigherValue = Convert.ToDouble(wear_high.Text);
                 }
-                catch (System.FormatException ex)
+                catch (FormatException ex)
                 {
                     MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
                 }
@@ -182,7 +182,7 @@ namespace BureauApp.SearchWindows
                 if (land_low.Text != string.Empty)
                 land_sldr.LowerValue = Convert.ToDouble(land_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -195,7 +195,7 @@ namespace BureauApp.SearchWindows
                 if (land_high.Text != string.Empty)
                 land_sldr.HigherValue = Convert.ToDouble(land_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -218,7 +218,7 @@ namespace BureauApp.SearchWindows
                 if (square_low.Text != string.Empty)
                 square_sldr.LowerValue = Convert.ToDouble(square_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -231,7 +231,7 @@ namespace BureauApp.SearchWindows
                 if (square_high.Text != string.Empty)
                 square_sldr.HigherValue = Convert.ToDouble(square_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -254,7 +254,7 @@ namespace BureauApp.SearchWindows
                 if (flow_low.Text != string.Empty)
                     flow_sldr.LowerValue = Convert.ToDouble(flow_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -267,7 +267,7 @@ namespace BureauApp.SearchWindows
                 if (flow_high.Text != string.Empty)
                 flow_sldr.HigherValue = Convert.ToDouble(flow_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -290,7 +290,7 @@ namespace BureauApp.SearchWindows
                 if (hall_high.Text != string.Empty)
                 hall_sldr.LowerValue = Convert.ToDouble(hall_low.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }
@@ -303,7 +303,7 @@ namespace BureauApp.SearchWindows
                 if (hall_high.Text != string.Empty)
                     hall_sldr.HigherValue = Convert.ToDouble(hall_high.Text);
             }
-            catch (System.FormatException ex)
+            catch (FormatException ex)
             {
                 MessageBox.Show(ex.Message + "Пример заполненного поля: 48,5.");
             }

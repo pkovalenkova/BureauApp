@@ -114,6 +114,7 @@
     <Compile Include="FieldAndValue.cs" />
     <Compile Include="Filling\FillSearchSqlQuery.cs" />
     <Compile Include="Filling\FillTables.cs" />
+    <Compile Include="GetID.cs" />
     <Compile Include="Hash.cs" />
     <Compile Include="Initialize.cs" />
     <Compile Include="Menu.cs" />

@@ -16,39 +16,7 @@ namespace BureauApp.AddWindows
 
         private void Add_btn_Click(object sender, RoutedEventArgs e)
         {
-            Query query = new Query();
-            try
-            {
-                if (query.Conn.State == System.Data.ConnectionState.Closed)
-                    query.Conn.Open();
-
-                
-                CheckEmptyField();
-                CheckWrongField();
-                CheckKadastr(query);
-                CheckFlat(query);
-
-
-                query.Sql = $"INSERT INTO flat (FK_Kadastr, Flat_number, Storey, Rooms, Level, SquareHall, LivingSquare, Branch, Balcony, Height) VALUES (@FK_Kadastr, @Flat_number, @Storey, @Rooms, @Level, '{square_hall.Text.Replace(',', '.')}', '{living_square.Text.Replace(',', '.')}', '{branch.Text.Replace(',', '.')}', '{balcony.Text.Replace(',', '.')}', '{height.Text.Replace(',', '.')}')";
-
-                MySqlCommand cmd_AddHouseRow = new MySqlCommand(query.Sql, query.Conn);
-                FillAddSqlQuery(cmd_AddHouseRow);
-
-                MessageBox.Show("Было добавлено строк " + cmd_AddHouseRow.ExecuteNonQuery().ToString(), "Успех");
-                this.Close();
-            }
-            catch (MySql.Data.MySqlClient.MySqlException ex)
-            {
-                MessageBox.Show("Ошибка при работе с базой данных. " + ex.Message, "Ошибка");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Ошибка");
-            }
-            finally
-            {
-                query.Conn.Close();
-            }
+            AddFlatRow();
         }
 
         private void CheckEmptyField()
@@ -148,6 +116,42 @@ namespace BureauApp.AddWindows
 
             if (level.IsChecked == true) cmd.Parameters.AddWithValue("Level", 1);
             else cmd.Parameters.AddWithValue("Level", 0);
+        }
+        private void AddFlatRow()
+        {
+            Query query = new Query();
+            try
+            {
+                if (query.Conn.State == System.Data.ConnectionState.Closed)
+                    query.Conn.Open();
+
+
+                CheckEmptyField();
+                CheckWrongField();
+                CheckKadastr(query);
+                CheckFlat(query);
+
+
+                query.Sql = $"INSERT INTO flat (FK_Kadastr, Flat_number, Storey, Rooms, Level, SquareHall, LivingSquare, Branch, Balcony, Height) VALUES (@FK_Kadastr, @Flat_number, @Storey, @Rooms, @Level, '{square_hall.Text.Replace(',', '.')}', '{living_square.Text.Replace(',', '.')}', '{branch.Text.Replace(',', '.')}', '{balcony.Text.Replace(',', '.')}', '{height.Text.Replace(',', '.')}')";
+
+                MySqlCommand cmd_AddHouseRow = new MySqlCommand(query.Sql, query.Conn);
+                FillAddSqlQuery(cmd_AddHouseRow);
+
+                MessageBox.Show("Было добавлено строк " + cmd_AddHouseRow.ExecuteNonQuery().ToString(), "Успех");
+                this.Close();
+            }
+            catch (MySqlException ex)
+            {
+                MessageBox.Show("Ошибка при работе с базой данных. " + ex.Message, "Ошибка");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Ошибка");
+            }
+            finally
+            {
+                query.Conn.Close();
+            }
         }
     }
 }
